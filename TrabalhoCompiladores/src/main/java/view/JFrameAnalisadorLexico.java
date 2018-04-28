@@ -64,6 +64,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mini compilador");
 
         jTextAreaCodigo.setColumns(20);
         jTextAreaCodigo.setRows(5);
@@ -176,7 +177,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         pack();
@@ -325,30 +326,82 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add("==");
                     break;
                 case ALEATORIO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ALEATORIO");
+                    listaTokens.add(retorno);
                     break;
                 case ALGORITMO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ALGORITMO");
+                    listaTokens.add(retorno);
                     break;
                 case ARQUIVO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ARQUIVO");
+                    listaTokens.add(retorno);
                     break;
                 case ATE:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ATE");
+                    listaTokens.add(retorno);
                     break;
                 case CARACTERE:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("CARACTERE");
+                    listaTokens.add(retorno);
                     break;
                 case CASO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("CASO");
+                    listaTokens.add(retorno);
                     break;
                 case CRONOMETRO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("CRONOMETRO");
+                    listaTokens.add(retorno);
                     break;
                 case DEBUG:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("DEBUG");
+                    listaTokens.add(retorno);
                     break;
                 case E:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("E");
+                    listaTokens.add(retorno);
                     break;
                 case ECO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ECO");
+                    listaTokens.add(retorno);
                     break;
                 case ENTAO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ENTAO");
+                    listaTokens.add(retorno);
                     break;
                 case ENQUANTO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ENQUANTO");
+                    listaTokens.add(retorno);
                     break;
                 case ESCOLHA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("ESCOLHA");
+                    listaTokens.add(retorno);
                     break;
                 case ESCREVA:
                     tokenitem = new Identificador();
@@ -369,60 +422,172 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add(retorno);
                     break;
                 case FALSO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FALSO");
+                    listaTokens.add(retorno);
                     break;
                 case FIMALGORITMO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMALGORITMO");
+                    listaTokens.add(retorno);
                     break;
                 case FIMENQUANTO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMENQUANTO");
+                    listaTokens.add(retorno);
                     break;
                 case FIMESCOLHA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMESCOLHA");
+                    listaTokens.add(retorno);
                     break;
                 case FIMFUNCAO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMFUNCAO");
+                    listaTokens.add(retorno);
                     break;
                 case FIMPARA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMPARA");
+                    listaTokens.add(retorno);
                     break;
                 case FIMPROCEDIMENTO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMPROCEDIMENTO");
+                    listaTokens.add(retorno);
                     break;
                 case FIMREPITA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMREPITA");
+                    listaTokens.add(retorno);
                     break;
                 case FIMSE:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FIMSE");
+                    listaTokens.add(retorno);
                     break;
                 case FUNCAO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("FUNCAO");
+                    listaTokens.add(retorno);
                     break;
                 case INICIO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("INICIO");
+                    listaTokens.add(retorno);
                     break;
                 case INT:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("INT");
+                    listaTokens.add(retorno);
                     break;
                 case INTEIRO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("INTEIRO");
+                    listaTokens.add(retorno);
                     break;
                 case INTERROMPA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("INTERROMPA");
+                    listaTokens.add(retorno);
                     break;
                 case LEIA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("LEIA");
+                    listaTokens.add(retorno);
                     break;
                 case LIMPATELA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("LIMPATELA");
+                    listaTokens.add(retorno);
                     break;
                 case LOGICO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("LOGICO");
+                    listaTokens.add(retorno);
                     break;
                 case MOD:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("MOD");
+                    listaTokens.add(retorno);
                     break;
                 case NAO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("NAO");
+                    listaTokens.add(retorno);
                     break;
                 case OU:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("OU");
+                    listaTokens.add(retorno);
                     break;
                 case OUTROCASO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("OUTROCASO");
+                    listaTokens.add(retorno);
                     break;
                 case PARA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("PARA");
+                    listaTokens.add(retorno);
                     break;
                 case PASSO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("PASSO");
+                    listaTokens.add(retorno);
                     break;
                 case PAUSA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("PAUSA");
+                    listaTokens.add(retorno);
                     break;
                 case REAL:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("REAL");
+                    listaTokens.add(retorno);
                     break;
                 case PROCEDIMENTO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("PROCEDIMENTO");
+                    listaTokens.add(retorno);
                     break;
                 case REPITA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("REPITA");
+                    listaTokens.add(retorno);
                     break;
                 case RETORNE:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("RETORNE");
+                    listaTokens.add(retorno);
                     break;
                 case SE:
                     tokenitem = new Identificador();
@@ -437,16 +602,53 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add(retorno);
                     break;
                 case TIMER:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("TIMER");
+                    listaTokens.add(retorno);
                     break;
                 case VAR:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("VAR");
+                    listaTokens.add(retorno);
                     break;
                 case VETOR:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("VETOR");
+                    listaTokens.add(retorno);
                     break;
                 case VERDADEIRO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("VERDADEIRO");
+                    listaTokens.add(retorno);
                     break;
                 case XOU:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("XOU");
+                    listaTokens.add(retorno);
                     break;
                 case DE:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = analisarPalavra("DE");
+                    listaTokens.add(retorno);
+                    break;
+
+                case ABRE_PARENTESIS:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "(";
+                    listaTokens.add(retorno);
+                    break;
+                case FECHA_PARENTESIS:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = ")";
+                    listaTokens.add(retorno);
                     break;
                 default:
                     listaTokens.add(lexer.lexema);
