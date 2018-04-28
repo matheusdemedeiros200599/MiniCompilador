@@ -1,0 +1,73 @@
+Código original:
+
+a + a = c - s senao a * 2
+Lista de Tokens:
+
+ID (53);
++
+(53) a;
+=
+ID (54);
+-
+ID (55);
+(46) senao;
+(53) a;
+*
+2
+Tabela de símbolos:
+
+(1) aleatorio;
+(2) algoritmo;
+(3) arquivo;
+(4) ate;
+(5) caractere;
+(6) caso;
+(7) cronometro;
+(8) debug;
+(9) e;
+(10) eco;
+(11) enquanto;
+(12) entao;
+(13) escolha;
+(14) escreva;
+(15) escreval;
+(16) faca;
+(17) falso;
+(18) fimalgoritmo;
+(19) fimenquanto;
+(20) fimescolha;
+(21) fimfuncao;
+(22) fimpara;
+(23) fimprocedimento;
+(24) fimrepita;
+(25) fimse;
+(26) funcao;
+(27) inicio;
+(28) int;
+(29) inteiro;
+(30) interrompa;
+(31) leia;
+(32) limpatela;
+(33) logico;
+(34) mod;
+(35) nao;
+(36) ou;
+(37) outrocaso;
+(38) para;
+(39) passo;
+(40) pausa;
+(41) real;
+(42) procedimento;
+(43) repita;
+(44) retorne;
+(45) se;
+(46) senao;
+(47) timer;
+(48) var;
+(49) vetor;
+(50) verdadeiro;
+(51) Xou;
+(52) de;
+(53) a;
+(54) c;
+(55) s;

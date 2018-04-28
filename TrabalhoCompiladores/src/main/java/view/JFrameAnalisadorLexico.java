@@ -34,6 +34,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     List<Identificador> jFlexTokensList;
     Vector<String> listaTokens;
     Vector<String> tabelaSimbolos;
+    String nome;
 
     public JFrameAnalisadorLexico() {
         initComponents();
@@ -61,6 +62,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         jListTabelaSimbolos = new javax.swing.JList<>();
         jButtonAnalisar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,6 +96,13 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
             }
         });
 
+        jButtonSalvar.setText("Salvar resultados");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelAnalisadorLexicoLayout = new javax.swing.GroupLayout(jPanelAnalisadorLexico);
         jPanelAnalisadorLexico.setLayout(jPanelAnalisadorLexicoLayout);
         jPanelAnalisadorLexicoLayout.setHorizontalGroup(
@@ -109,6 +118,8 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelAnalisadorLexicoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSalvar)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonAnalisar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -139,7 +150,8 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAnalisadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonLimpar)
-                            .addComponent(jButtonAnalisar)))
+                            .addComponent(jButtonAnalisar)
+                            .addComponent(jButtonSalvar)))
                     .addGroup(jPanelAnalisadorLexicoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelAnalisadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +189,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -199,6 +211,31 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButtonAnalisarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+
+        File arquivo = new File("resultado.txt");
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(arquivo);
+            String aux = "Código original:\n";
+            aux += "\n" + jTextAreaCodigo.getText();
+            aux += "\nLista de Tokens:\n";
+            for (int i = 0; i < listaTokens.size(); i++) {
+                aux = aux + "\n" + listaTokens.get(i);
+            }
+            aux += "\nTabela de símbolos:\n";
+            for (int i = 0; i < tabelaSimbolos.size(); i++) {
+                aux = aux + "\n" + tabelaSimbolos.get(i);
+            }
+            writer.print(aux);
+
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Erro!");
+            Logger.getLogger(JFrameAnalisadorLexico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +275,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnalisar;
     private javax.swing.JButton jButtonLimpar;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

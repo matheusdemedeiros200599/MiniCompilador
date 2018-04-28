@@ -1,1 +1,1 @@
-se a == b
+a + a = c - s senao a * 2
