@@ -1,1 +1,22 @@
-se a == b
+Algoritmo "Teste5"
+Var
+   n,i,x : inteiro
+   vet : vetor [1..10] de real
+
+Inicio
+   escreval ("Digite o valor de n")
+   leia (n)
+   para i de 1 ate n faca
+        leia (vet[i])
+   fimpara
+   escreval ("Digite o valor a ser multiplicado")
+   leia (x)
+   se x > 0 entao
+       para i de 1 ate n faca
+            vet[i] <- vet[i] * x
+            escreval (2.5)
+       fimpara
+   senao
+        escreval ("O valor deve ser positivo")
+   fimse
+Fimalgoritmo

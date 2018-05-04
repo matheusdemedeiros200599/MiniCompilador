@@ -18,15 +18,24 @@ public String lexema;
 //Regras lexicas
 {BRANCO} {/*Ignore*/}
 "//".* {/*Ignore*/}
-"=" {return ATRIBUICAO;}
-"==" {return COMPARACAO;}
+"<-" {return ATRIBUICAO;}
+"=" {return COMPARACAO;}
 "+" {return SOMA;}
 "*" {return MULTIPLICACAO;}
 "-" {return SUBTRACAO;}
 "/" {return DIVISAO;}
 "(" {return ABRE_PARENTESIS;}
 ")" {return FECHA_PARENTESIS;}
-//"." {return PALAVRA_RESERVADA;}
+"[" {return ABRE_COLCHETES;}
+"]" {return FECHA_COLCHETES;}
+".." {return INTERVALO_VETOR;}
+"\"" {return ASPAS;}
+"," {return VIRGULA;}
+":" {return TIPO;}
+">" {return MAIOR;}
+"<" {return MENOR;}
+"<=" {return MENOR_IGUAL;}
+">=" {return MAIOR_IGUAL;}
 
 //Palavras reservadas do VisualG
 
@@ -82,6 +91,7 @@ public String lexema;
 "verdadeiro" {return VERDADEIRO;}
 "Xou" {return XOU;}
 "de" {return DE;}
+
 
 {L}({L}|{D})* {lexema=yytext(); return ID;}
  ("(-"{D}+")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}

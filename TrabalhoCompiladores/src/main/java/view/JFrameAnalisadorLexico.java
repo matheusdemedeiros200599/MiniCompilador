@@ -300,7 +300,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add("/");
                     break;
                 case ATRIBUICAO:
-                    listaTokens.add("=");
+                    listaTokens.add("<-");
                     break;
                 case ERRO:
                     listaTokens.add("Erro, símbolo não reconhecido.");
@@ -323,7 +323,7 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     break;
                 case COMPARACAO:
                     //Rever a comparação no VISUALG
-                    listaTokens.add("==");
+                    listaTokens.add("=");
                     break;
                 case ALEATORIO:
                     tokenitem = new Identificador();
@@ -650,6 +650,69 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     retorno = ")";
                     listaTokens.add(retorno);
                     break;
+                case VIRGULA:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = ",";
+                    listaTokens.add(retorno);
+                    break;
+                case TIPO:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = ":";
+                    listaTokens.add(retorno);
+                    break;
+                case ABRE_COLCHETES:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "[";
+                    listaTokens.add(retorno);
+                    break;
+                case FECHA_COLCHETES:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "]";
+                    listaTokens.add(retorno);
+                    break;
+                case ASPAS:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "\"";
+                    listaTokens.add(retorno);
+                    break;
+
+                case INTERVALO_VETOR:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "..";
+                    listaTokens.add(retorno);
+                    break;
+
+                case MAIOR:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = ">";
+                    listaTokens.add(retorno);
+                    break;
+                case MENOR:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "<";
+                    listaTokens.add(retorno);
+                    break;
+                case MENOR_IGUAL:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = "<=";
+                    listaTokens.add(retorno);
+                    break;
+                case MAIOR_IGUAL:
+                    tokenitem = new Identificador();
+                    tokenitem.setNome(lexer.lexema);
+                    retorno = ">=";
+                    listaTokens.add(retorno);
+                    break;
+
                 default:
                     listaTokens.add(lexer.lexema);
                     break;
