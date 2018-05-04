@@ -318,9 +318,10 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
 
                     break;
                 }
-                case NUM_INTEIRO:
+                case NUM:
                     listaTokens.add(lexer.lexema);
                     break;
+               
                 case COMPARACAO:
                     //Rever a comparação no VISUALG
                     listaTokens.add("=");

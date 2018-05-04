@@ -15,7 +15,7 @@ public enum Token {
     //PALAVRA_RESERVADA,
     ID,
     ERRO,
-    NUM_INTEIRO,
+    NUM,
     ALEATORIO,
     ALGORITMO,
     ARQUIVO,
@@ -79,6 +79,7 @@ public enum Token {
     MENOR,
     MENOR_IGUAL,
     MAIOR_IGUAL,
-    INTERVALO_VETOR
+    INTERVALO_VETOR,
+    
 
 }

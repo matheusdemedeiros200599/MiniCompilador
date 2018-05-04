@@ -5,11 +5,13 @@ import static analisador.Token.*;
 
 //Definicoes
 %%
+%public
 %class Lexer
 %type Token
 L = [a-zA-Z_]
-D = [0-9]
-BRANCO=[ \t\r\n]
+//D = [0-9]
+D = [0-9]+ ("." [0-9]+)?
+BRANCO= [ \t\r\n]
 %{
 public String lexema;
 %}
@@ -94,5 +96,5 @@ public String lexema;
 
 
 {L}({L}|{D})* {lexema=yytext(); return ID;}
- ("(-"{D}+")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}
-. {return ERRO;}
+//("(-"{D}")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}
+("-"{D})| ("+"{D})| {D} {lexema=yytext(); return NUM;}
