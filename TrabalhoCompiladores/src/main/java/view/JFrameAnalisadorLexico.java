@@ -308,7 +308,8 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     if (analisarPalavra(lexer.lexema).equals("")) {
                         tokenitem = new Identificador(lexer.lexema, this.tabelaSimbolos.size() + 1);
                         jFlexTokensList.add(tokenitem);
-                        listaTokens.add("ID (" + tokenitem.getID() + ");");
+                        //listaTokens.add("ID (" + tokenitem.getID() + ");");
+                        listaTokens.add("ID(" + tokenitem.getID() + ") " + tokenitem.getNome() + ";");
                         //tabelaSimbolos.add("(" + tokenitem.getID() + ") " + tokenitem.getNome() + ";");
                         tabelaSimbolos.add(tokenitem.toString());
                     } else {
