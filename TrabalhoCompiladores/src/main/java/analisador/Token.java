@@ -2,6 +2,7 @@ package analisador;
 
 /**
  * Classe Enum que passa todos os tokens
+ *
  * @author Edoardo, Lucas e Matheus
  */
 public enum Token {
@@ -14,7 +15,7 @@ public enum Token {
     //PALAVRA_RESERVADA,
     ID,
     ERRO,
-    NUM_INTEIRO,
+    NUM,
     ALEATORIO,
     ALGORITMO,
     ARQUIVO,
@@ -68,6 +69,17 @@ public enum Token {
     XOU,
     DE,
     ABRE_PARENTESIS,
-    FECHA_PARENTESIS
+    FECHA_PARENTESIS,
+    TIPO,
+    VIRGULA,
+    ASPAS,
+    ABRE_COLCHETES,
+    FECHA_COLCHETES,
+    MAIOR,
+    MENOR,
+    MENOR_IGUAL,
+    MAIOR_IGUAL,
+    INTERVALO_VETOR,
+    LITERAL
 
 }
