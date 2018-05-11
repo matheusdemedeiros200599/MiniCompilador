@@ -12,26 +12,53 @@ public class Identificador {
     private String nome;
     private int ID;
 
+    /**
+     * Construtor vazio
+     */
     public Identificador() {
     }
 
+    /**
+     * Construtor
+     *
+     * Passa os seguintes parametros:
+     *
+     * @param nome
+     * @param ID
+     */
     public Identificador(String nome, int ID) {
         this.nome = nome;
         this.ID = ID;
     }
 
+    /**
+     *
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return id
+     */
     public int getID() {
         return ID;
     }
 
+    /**
+     *
+     * @param ID
+     */
     public void setID(int ID) {
         this.ID = ID;
     }

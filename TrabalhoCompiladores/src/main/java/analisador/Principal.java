@@ -17,6 +17,8 @@ public class Principal {
     private static final String path = "\\src\\main\\java\\analisador\\Lexer.flex";
 
     /**
+     * Método Main para gerar o arquivo Lexer.java
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

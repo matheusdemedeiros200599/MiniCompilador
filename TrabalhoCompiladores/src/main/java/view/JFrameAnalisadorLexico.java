@@ -35,7 +35,8 @@ import javax.swing.JOptionPane;
 public class JFrameAnalisadorLexico extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFrameAnalisadorLexico
+     * Cria um novo JFrameAnalisadorLexico
+     * 
      */
     List<Identificador> jFlexTokensList;
     List<String> listaTokens;
@@ -43,6 +44,12 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     DefaultListModel modelTokens;
     DefaultListModel modelSimbolos;
 
+    /**
+     * Construtor do Frame
+     * 
+     * Instância os modelos de listas. 
+     * Necessario para ser possivel mostrar na tela.
+     */
     public JFrameAnalisadorLexico() {
         initComponents();
         modelTokens = new DefaultListModel();
@@ -260,14 +267,25 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaCodigo;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Método de analise
+     *
+     * Este método analisa o código informado e preenche a lista de token e a de
+     * simbolos.
+     *
+     * Utiliza a biblioteca JFlex para fazer a analise
+     *
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void analisar() throws FileNotFoundException, IOException {
         jFlexTokensList = new LinkedList<>();
         listaTokens = new LinkedList<>();
-        
+
         preencherPalavrasReservadas();
         carregarListaSimbolos();
         carregarArquivo();
-        
+
         Reader reader = new BufferedReader(new FileReader("arquivo.txt"));
         Lexer lexer = new Lexer(reader);
 
@@ -723,7 +741,14 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         }
         return "";
     }
-   
+
+    /**
+     * Método para popular a Lista de Simbolos
+     *
+     * Este método apenas preenche a lista de simbolos com as palavras
+     * reservadas
+     *
+     */
     private void preencherPalavrasReservadas() {
         this.tabelaSimbolos = new LinkedList<>();
         this.tabelaSimbolos.add("aleatorio");
@@ -779,7 +804,14 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         this.tabelaSimbolos.add("Xou");
         this.tabelaSimbolos.add("de");
     }
-    
+
+    /**
+     * Método para criar arquivo
+     *
+     * Este método é necessario, pois o JFlex usa um arquivo para analisar o
+     * código
+     *
+     */
     private void carregarArquivo() throws HeadlessException {
         File arquivo = new File("arquivo.txt");
         PrintWriter writer;
@@ -793,6 +825,11 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para carregar a lista de simbolos
+     *
+     * Este método carrega os dados na tela
+     */
     private void carregarListaSimbolos() {
         modelSimbolos = new DefaultListModel();
         int cont = 0;
@@ -808,6 +845,11 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para carregar a lista de tokens
+     *
+     * Este método carrega os dados na tela
+     */
     private void carregarListaTokens() {
         modelTokens = new DefaultListModel();
         try {
@@ -821,7 +863,12 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         }
     }
 
-     private void limpar() {
+    /**
+     * Método para limpar a tela
+     *
+     * Este método limpa a tela e todas as listas
+     */
+    private void limpar() {
         listaTokens = new LinkedList<>();
         tabelaSimbolos = new LinkedList<>();
         jTextAreaCodigo.setText("");
