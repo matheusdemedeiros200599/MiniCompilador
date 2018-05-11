@@ -18,13 +18,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import analisador.Lexer;
 import analisador.Token;
+import java.awt.HeadlessException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
+ * Frame Principal
  *
- * @author Matheus
+ * Analisa um código qualquer, gera os tokens e a lista de simbolos
+ *
+ * @author Edoardo, Lucas e Matheus
  */
 public class JFrameAnalisadorLexico extends javax.swing.JFrame {
 
@@ -32,11 +38,15 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
      * Creates new form JFrameAnalisadorLexico
      */
     List<Identificador> jFlexTokensList;
-    Vector<String> listaTokens;
-    Vector<String> tabelaSimbolos;
+    List<String> listaTokens;
+    List<String> tabelaSimbolos;
+    DefaultListModel modelTokens;
+    DefaultListModel modelSimbolos;
 
     public JFrameAnalisadorLexico() {
         initComponents();
+        modelTokens = new DefaultListModel();
+        modelSimbolos = new DefaultListModel();
     }
 
     /**
@@ -188,16 +198,14 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonAnalisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalisarActionPerformed
-
         try {
             analisar();
-            this.jListListaTokens.setListData(this.listaTokens);
+            carregarListaTokens();
+            carregarListaSimbolos();
         } catch (IOException ex) {
-            System.out.println("Erro!!");
+            ex.printStackTrace();
+            System.out.println("Erro no arquivo gerado pelo Lexer!");
         }
-        this.jListTabelaSimbolos.setListData(this.tabelaSimbolos);
-
-
     }//GEN-LAST:event_jButtonAnalisarActionPerformed
 
     /**
@@ -253,38 +261,24 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void analisar() throws FileNotFoundException, IOException {
-        //int contIDs = this.listaTokens.size();
-        jFlexTokensList = new LinkedList<Identificador>();
-        listaTokens = new Vector<>();
+        jFlexTokensList = new LinkedList<>();
+        listaTokens = new LinkedList<>();
+        
         preencherPalavrasReservadas();
-        File arquivo = new File("arquivo.txt");
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(arquivo);
-            //System.out.println(jTextAreaCodigo.getText());
-            writer.print(jTextAreaCodigo.getText());
-            writer.close();
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "Erro!");
-            Logger.getLogger(JFrameAnalisadorLexico.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        carregarListaSimbolos();
+        carregarArquivo();
+        
         Reader reader = new BufferedReader(new FileReader("arquivo.txt"));
         Lexer lexer = new Lexer(reader);
-
-        String resultado = lexer.yytext();
 
         while (true) {
             Token token = lexer.yylex();
             if (token == null) {
-                for (int i = 0; i < jFlexTokensList.size(); i++) {
-                    System.out.println(jFlexTokensList.get(i).getNome() + "=" + jFlexTokensList.get(i).getID());
-                }
                 return;
             }
             Identificador tokenitem;
             String retorno = "";
             switch (token) {
-
                 case SOMA:
                     listaTokens.add("+");
                     break;
@@ -307,10 +301,8 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     if (analisarPalavra(lexer.lexema).equals("")) {
                         tokenitem = new Identificador(lexer.lexema, this.tabelaSimbolos.size() + 1);
                         jFlexTokensList.add(tokenitem);
-                        //listaTokens.add("ID (" + tokenitem.getID() + ");");
-                        listaTokens.add("ID(" + tokenitem.getID() + ") " + tokenitem.getNome() + ";");
-                        //tabelaSimbolos.add("(" + tokenitem.getID() + ") " + tokenitem.getNome() + ";");
-                        tabelaSimbolos.add(tokenitem.toString());
+                        listaTokens.add(tokenitem.toString());
+                        tabelaSimbolos.add(tokenitem.getNome());
                     } else {
                         listaTokens.add(analisarPalavra(lexer.lexema));
                     }
@@ -323,7 +315,6 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add(lexer.lexema);
                     break;
                 case COMPARACAO:
-                    //Rever a comparação no VISUALG
                     listaTokens.add("=");
                     break;
                 case ALEATORIO:
@@ -718,16 +709,23 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         }
     }
 
-    public void limpar() {
-        listaTokens = new Vector<>();
-        tabelaSimbolos = new Vector();
-        jTextAreaCodigo.setText("");
-        jListListaTokens.setListData(listaTokens);
-        jListTabelaSimbolos.setListData(tabelaSimbolos);
-    }
+    private String analisarPalavra(String palavra) {
+        palavra = palavra.toLowerCase();
 
-    public void preencherPalavrasReservadas() {
-        tabelaSimbolos = new Vector<>();
+        for (int i = 0; i < tabelaSimbolos.size(); i++) {
+            if (tabelaSimbolos.get(i).equalsIgnoreCase(palavra)) {
+                if (i < 52) {
+                    return "(" + (i + 1) + ") " + tabelaSimbolos.get(i) + ";";
+                } else {
+                    return "ID(" + (i + 1) + ") " + tabelaSimbolos.get(i) + ";";
+                }
+            }
+        }
+        return "";
+    }
+   
+    private void preencherPalavrasReservadas() {
+        this.tabelaSimbolos = new LinkedList<>();
         this.tabelaSimbolos.add("aleatorio");
         this.tabelaSimbolos.add("algoritmo");
         this.tabelaSimbolos.add("arquivo");
@@ -780,26 +778,55 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
         this.tabelaSimbolos.add("verdadeiro");
         this.tabelaSimbolos.add("Xou");
         this.tabelaSimbolos.add("de");
-
-        for (int i = 0; i < this.tabelaSimbolos.size(); i++) {
-            int j = i + 1;
-            this.tabelaSimbolos.set(i, ("(" + j + ") " + this.tabelaSimbolos.get(i) + ";"));
+    }
+    
+    private void carregarArquivo() throws HeadlessException {
+        File arquivo = new File("arquivo.txt");
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(arquivo);
+            writer.print(jTextAreaCodigo.getText());
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao encontrar o arquivo gerado pelo Lexer!");
         }
     }
 
-    public String analisarPalavra(String palavra) {
-        palavra = palavra.toLowerCase();
-        for (int i = 0; i < tabelaSimbolos.size(); i++) {
-            if (i < 10) {
-                if (tabelaSimbolos.get(i).substring(4, (tabelaSimbolos.get(i).length() - 1)).equals(palavra)) {
-                    return tabelaSimbolos.get(i);
-                }
+    private void carregarListaSimbolos() {
+        modelSimbolos = new DefaultListModel();
+        int cont = 0;
+        try {
+            for (String tabelaSimbolo : tabelaSimbolos) {
+                cont++;
+                modelSimbolos.addElement("(" + cont + ") " + tabelaSimbolo + ";");
             }
-            if (tabelaSimbolos.get(i).substring(5, (tabelaSimbolos.get(i).length() - 1)).equals(palavra)) {
-                return tabelaSimbolos.get(i);
-            }
+            jListTabelaSimbolos.setModel(modelSimbolos);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Não foi possivel carregar as palavras reservadas!");
         }
-        return "";
+    }
+
+    private void carregarListaTokens() {
+        modelTokens = new DefaultListModel();
+        try {
+            for (String listaToken : listaTokens) {
+                modelTokens.addElement(listaToken);
+            }
+            jListListaTokens.setModel(modelTokens);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Não foi possivel carregar as palavras reservadas!");
+        }
+    }
+
+     private void limpar() {
+        listaTokens = new LinkedList<>();
+        tabelaSimbolos = new LinkedList<>();
+        jTextAreaCodigo.setText("");
+        modelTokens.removeAllElements();
+        modelSimbolos.removeAllElements();
     }
 
 }

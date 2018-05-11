@@ -38,7 +38,7 @@ public class Identificador {
 
     @Override
     public String toString() {
-        return String.format("(%d) %s;", getID(), getNome());
+        return String.format("ID(%d) %s;", getID(), getNome());
     }
 
     @Override

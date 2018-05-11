@@ -4,6 +4,7 @@ package analisador;
 import static analisador.Token.*;
 
 //Definicoes
+
 %%
 %public
 %class Lexer
@@ -11,13 +12,14 @@ import static analisador.Token.*;
 L = [a-zA-Z_]
 //D = [0-9]
 D = [0-9]+ ("." [0-9]+)?
-BRANCO= [ \t\r\n]
+BRANCO = [ \t\r\n]
 %{
 public String lexema;
 %}
 %%
 
 //Regras lexicas
+
 {BRANCO} {/*Ignore*/}
 "//".* {/*Ignore*/}
 "<-" {return ATRIBUICAO;}
@@ -39,7 +41,7 @@ public String lexema;
 "<=" {return MENOR_IGUAL;}
 ">=" {return MAIOR_IGUAL;}
 
-//Palavras reservadas do VisualG
+//Palavras reservadas do VisuALG
 
 "aleatorio" {return ALEATORIO;}
 "algoritmo" {return ALGORITMO;}
@@ -94,14 +96,15 @@ public String lexema;
 "Xou" {return XOU;}
 "de" {return DE;}
 
+//Regras para os literais, ids e numeros
 
 \".+\" {lexema=yytext(); return LITERAL;}
 {L}({L}|{D})* {lexema=yytext(); return ID;}
-//("(-"{D}")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}
 ("-"{D})| ("+"{D})| {D} {lexema=yytext(); return NUM;}
+//("(-"{D}")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}
 
-/*
-    // \" = Reconhece o abre aspas
-    // .+ = Regex para reconhecer qualquer coisa dentro das aspas
-    // /" = Reconhece o fecha aspas
+/* Como é feito o reconhecimento do literal:
+    \" = Reconhece o abre aspas
+    .+ = Regex para reconhecer qualquer coisa dentro das aspas
+    /" = Reconhece o fecha aspas
 */
