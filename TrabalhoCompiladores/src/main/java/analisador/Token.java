@@ -80,6 +80,6 @@ public enum Token {
     MENOR_IGUAL,
     MAIOR_IGUAL,
     INTERVALO_VETOR,
-    
+    LITERAL
 
 }

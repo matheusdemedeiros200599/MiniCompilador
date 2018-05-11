@@ -95,6 +95,13 @@ public String lexema;
 "de" {return DE;}
 
 
+\".+\" {lexema=yytext(); return LITERAL;}
 {L}({L}|{D})* {lexema=yytext(); return ID;}
 //("(-"{D}")")|{D}+ {lexema=yytext(); return NUM_INTEIRO;}
 ("-"{D})| ("+"{D})| {D} {lexema=yytext(); return NUM;}
+
+/*
+    // \" = Reconhece o abre aspas
+    // .+ = Regex para reconhecer qualquer coisa dentro das aspas
+    // /" = Reconhece o fecha aspas
+*/

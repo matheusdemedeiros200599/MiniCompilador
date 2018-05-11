@@ -43,9 +43,9 @@ public class Identificador {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.nome);
-        hash = 11 * hash + this.ID;
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + this.ID;
         return hash;
     }
 
@@ -69,7 +69,5 @@ public class Identificador {
         }
         return true;
     }
-    
-    
 
 }

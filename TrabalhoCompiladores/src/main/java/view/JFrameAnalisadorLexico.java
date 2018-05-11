@@ -275,12 +275,10 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
 
         while (true) {
             Token token = lexer.yylex();
-
             if (token == null) {
                 for (int i = 0; i < jFlexTokensList.size(); i++) {
                     System.out.println(jFlexTokensList.get(i).getNome() + "=" + jFlexTokensList.get(i).getID());
                 }
-
                 return;
             }
             Identificador tokenitem;
@@ -315,13 +313,14 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     } else {
                         listaTokens.add(analisarPalavra(lexer.lexema));
                     }
-
                     break;
                 }
                 case NUM:
                     listaTokens.add(lexer.lexema);
                     break;
-               
+                case LITERAL:
+                    listaTokens.add(lexer.lexema);
+                    break;
                 case COMPARACAO:
                     //Rever a comparação no VISUALG
                     listaTokens.add("=");
@@ -638,7 +637,6 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     retorno = analisarPalavra("DE");
                     listaTokens.add(retorno);
                     break;
-
                 case ABRE_PARENTESIS:
                     tokenitem = new Identificador();
                     tokenitem.setNome(lexer.lexema);
@@ -681,14 +679,12 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     retorno = "\"";
                     listaTokens.add(retorno);
                     break;
-
                 case INTERVALO_VETOR:
                     tokenitem = new Identificador();
                     tokenitem.setNome(lexer.lexema);
                     retorno = "..";
                     listaTokens.add(retorno);
                     break;
-
                 case MAIOR:
                     tokenitem = new Identificador();
                     tokenitem.setNome(lexer.lexema);
@@ -714,9 +710,9 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
                     listaTokens.add(retorno);
                     break;
 
-                default:
-                    listaTokens.add(lexer.lexema);
-                    break;
+                //default:
+                //    listaTokens.add(lexer.lexema);
+                //    break;
             }
         }
     }
@@ -793,11 +789,14 @@ public class JFrameAnalisadorLexico extends javax.swing.JFrame {
     public String analisarPalavra(String palavra) {
         palavra = palavra.toLowerCase();
         for (int i = 0; i < tabelaSimbolos.size(); i++) {
+            if (i < 10) {
+                if (tabelaSimbolos.get(i).substring(4, (tabelaSimbolos.get(i).length() - 1)).equals(palavra)) {
+                    return tabelaSimbolos.get(i);
+                }
+            }
             if (tabelaSimbolos.get(i).substring(5, (tabelaSimbolos.get(i).length() - 1)).equals(palavra)) {
                 return tabelaSimbolos.get(i);
-
             }
-
         }
         return "";
     }

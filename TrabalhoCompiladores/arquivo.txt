@@ -1,9 +1,1 @@
-algoritmo "Teste1"
-Var
-   x, y : inteiro
-
-Inicio
-   y <- 3
-   x <- y + 10
-   escreval (x)
-Fimalgoritmo
+a123
